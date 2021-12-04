@@ -120,7 +120,6 @@ const Demo = () => (
     />`}
     </CodeBlock>
     <RTI
-      defaultCountry="mo"
       flagsImagePath={flagsImagePath}
       onlyCountries={[
         { name: "Macau (澳門)", iso2: "mo", dialCode: "853", priority: 0, format: "+..-..-....-...." },
@@ -129,6 +128,39 @@ const Demo = () => (
         { name: "Mexico (México)", iso2: "mx", dialCode: "52", priority: 0, format: "+..-..-..-...." },
         { name: "Brazil (Brasil)", iso2: "br", dialCode: "55", priority: 0, format: "+..-..-....-...." },
       ]}
+    />
+
+    <CodeBlock>
+      {` <RTI
+    flagsImagePath={flagsImagePath}
+    disabled={true}
+    initialValue={'1999'}
+    initialDialCode={'53'}
+    onlyCountries={[
+      { name: "Macau (澳門)", iso2: "mo", dialCode: "853", priority: 0, format: "+..-..-....-...." },
+      { name: "United States", iso2: "us", dialCode: "1", priority: 0, format: "+. (...) ...-...." },
+      { name: "Canada", iso2: "ca", dialCode: "1", priority: 1, format: "+. (...) ...-....", hasAreaCodes: true },
+      { name: "Mexico (México)", iso2: "mx", dialCode: "52", priority: 0, format: "+..-..-..-...." },
+      { name: "Brazil (Brasil)", iso2: "br", dialCode: "55", priority: 0, format: "+..-..-....-...." },
+    ]}
+    onChange={(telnumber, country) =>
+      console.log('telnumber :>> ', telnumber, 'country: ', country)}
+    />`}
+    </CodeBlock>
+    <RTI
+      flagsImagePath={flagsImagePath}
+      disabled={true}
+      initialValue={'1999'}
+      initialDialCode={'53'}
+      onlyCountries={[
+        { name: "Macau (澳門)", iso2: "mo", dialCode: "853", priority: 0, format: "+..-..-....-...." },
+        { name: "United States", iso2: "us", dialCode: "1", priority: 0, format: "+. (...) ...-...." },
+        { name: "Canada", iso2: "ca", dialCode: "1", priority: 1, format: "+. (...) ...-....", hasAreaCodes: true },
+        { name: "Mexico (México)", iso2: "mx", dialCode: "52", priority: 0, format: "+..-..-..-...." },
+        { name: "Brazil (Brasil)", iso2: "br", dialCode: "55", priority: 0, format: "+..-..-....-...." },
+      ]}
+      onChange={(telnumber, country) =>
+        console.log('telnumber :>> ', telnumber, 'country: ', country)}
     />
   </div>
 );

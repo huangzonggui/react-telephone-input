@@ -46,6 +46,7 @@ interface DefaultProps {
 export type Props = {
   value?: string;
   initialValue?: string;
+  initialDialCode?: string;
   classNames: string;
   className: string;
   inputId: string;
@@ -127,7 +128,7 @@ export class ReactTelephoneInput extends Component<Props, State> {
       zIndex: 20,
       backgroundColor: 'white',
     },
-    // dialCode: allCountries[0].dialCode
+    initialDialCode: ''
   };
 
   numberInputRef: HTMLInputElement | null = null;
@@ -155,12 +156,22 @@ export class ReactTelephoneInput extends Component<Props, State> {
       debouncedQueryStingSearcher: debounce(this.searchCountry, 600),
       formattedNumber: '',
       highlightCountryIndex: 0,
-      dialCode: this.props.onlyCountries[0].dialCode ? this.props.onlyCountries[0].dialCode : ''
+      dialCode: ''
     };
   }
 
   componentDidMount() {
     this._cursorToEnd(true);
+
+    if (this.props.initialDialCode) {
+      this.setState({
+        dialCode: this.props.initialDialCode
+      })
+    } else {
+      this.setState({
+        dialCode: this.props.onlyCountries[0].dialCode ? this.props.onlyCountries[0].dialCode : ''
+      })
+    }
   }
 
   shouldComponentUpdate(nextProps: Props, nextState: State) {
@@ -169,6 +180,7 @@ export class ReactTelephoneInput extends Component<Props, State> {
 
   static getDerivedStateFromProps(props: Props, state: State) {
     let inputNumber;
+    let inputDialCode = '';
     const { onlyCountries } = props;
     const { showDropDown, preferredCountries, selectedCountry } = state;
 
@@ -209,11 +221,20 @@ export class ReactTelephoneInput extends Component<Props, State> {
       selectedCountryGuess = selectedCountry;
     }
 
+    // inputDialCode = selectedCountry.dialCode
+    //  else if (props.initialDialCode) {
+    //   inputDialCode = props.initialDialCode
+    // } else if (props.onlyCountries[0]?.dialCode) {
+    //   inputDialCode = props.onlyCountries[0].dialCode
+    // }
+
+    // const dialCode = inputDialCode
     const selectedCountryGuessIndex = findIndex(
       propEq('iso2', selectedCountryGuess.iso2),
       preferredCountries.concat(onlyCountries),
     );
 
+    console.log('selectedCountry :>> ', selectedCountry);
     const formattedNumber = inputNumber.replace(/\D/g, '');
     // const formattedNumber = formatNumber(
     //   inputNumber.replace(/\D/g, ''),
@@ -228,6 +249,7 @@ export class ReactTelephoneInput extends Component<Props, State> {
       selectedCountry: selectedCountryGuess,
       highlightCountryIndex: selectedCountryGuessIndex,
       formattedNumber,
+      // dialCode,
     };
   }
 
@@ -683,6 +705,7 @@ export class ReactTelephoneInput extends Component<Props, State> {
           'react-tel-input',
           this.props.classNames,
           this.props.className,
+          this.props.disabled && 'react-tel-input-disabled'
         )}
         data-test-id="src_reacttelephoneinput_test_id_4"
       >

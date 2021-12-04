@@ -1,3 +1,15 @@
+.react-tel-input-disabled input.form-control:disabled,
+.react-tel-input-disabled input[disabled],
+.react-tel-input-disabled button.selected-flag {
+  background-color: #cccccc;
+  color: #666666;
+}
+.react-tel-input-disabled .flag-dropdown:hover {
+  cursor: none;
+}
+.react-tel-input-disabled .flag-dropdown:hover .selected-flag {
+  background-color: transparent !important;
+}
 .react-tel-input {
   position: relative;
   width: 200px;
