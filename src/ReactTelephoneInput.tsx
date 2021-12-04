@@ -117,7 +117,7 @@ export class ReactTelephoneInput extends Component<Props, State> {
     onEnterKeyPress() { },
     preferredCountries: [],
     disabled: false,
-    placeholder: '+1 (702) 123-4567',
+    placeholder: '',
     autoComplete: 'tel',
     required: false,
     inputProps: {},
@@ -127,6 +127,7 @@ export class ReactTelephoneInput extends Component<Props, State> {
       zIndex: 20,
       backgroundColor: 'white',
     },
+    // dialCode: allCountries[0].dialCode
   };
 
   numberInputRef: HTMLInputElement | null = null;
@@ -154,7 +155,7 @@ export class ReactTelephoneInput extends Component<Props, State> {
       debouncedQueryStingSearcher: debounce(this.searchCountry, 600),
       formattedNumber: '',
       highlightCountryIndex: 0,
-      dialCode: ''
+      dialCode: allCountries[0].dialCode
     };
   }
 
@@ -376,8 +377,8 @@ export class ReactTelephoneInput extends Component<Props, State> {
 
     // tiny optimization
     if (
-      nextSelectedCountry &&
-      currentSelectedCountry.iso2 !== nextSelectedCountry.iso2
+      nextSelectedCountry
+      // && currentSelectedCountry.iso2 !== nextSelectedCountry.iso2
     ) {
       // const newNumber = replaceCountryCode(
       //   currentSelectedCountry,
@@ -603,11 +604,11 @@ export class ReactTelephoneInput extends Component<Props, State> {
               title={`${country.name} - ${country.dialCode}`}
               data-test-id="src_reacttelephoneinput_test_id_0"
             >
-              <div
+              {/* <div
                 className={inputFlagClasses}
                 style={this.getFlagStyle()}
                 data-test-id="src_reacttelephoneinput_test_id_1"
-              />
+              /> */}
               <span
                 className="country-name"
                 data-test-id="src_reacttelephoneinput_test_id_2"
@@ -699,18 +700,19 @@ export class ReactTelephoneInput extends Component<Props, State> {
             type={'button' as any}
             {...buttonProps}
           >
-            <div
+            {/* <div
               className={inputFlagClasses}
               // style={this.getFlagStyle()}
               data-test-id="src_reacttelephoneinput_test_id_8"
             >
-              {/* <span>{`+${this.state.selectedCountry?.dialCod}`}</span> 無法更新視圖，對象是引用類型*/}
-              <span>{`+${this.state.dialCode}`}</span>
               <div
                 className={arrowClasses}
                 data-test-id="src_reacttelephoneinput_test_id_9"
               />
-            </div>
+            </div> */}
+
+            {/* <span>{`+${this.state.selectedCountry?.dialCod}`}</span> 無法更新視圖，對象是引用類型*/}
+            <div className={'dialCode'}>{`+${this.state.dialCode}`}</div>
           </button>
           {this.state.showDropDown ? this.getCountryDropDownList() : ''}
         </div>
@@ -733,6 +735,7 @@ export class ReactTelephoneInput extends Component<Props, State> {
           disabled={this.props.disabled}
           {...otherProps}
           data-test-id="src_reacttelephoneinput_test_id_5"
+          id="ReactTelephoneInputId"
         />
       </div>
     );

@@ -1,3 +1,5 @@
+@dial-code-width: 50px;
+
 .react-tel-input {
   position: relative;
   width: 200px;
@@ -711,7 +713,7 @@
     z-index: 0;
     margin-top: 0 !important;
     margin-bottom: 0 !important;
-    padding-left: 44px;
+    padding-left: @dial-code-width + 4px;
     margin-left: 0;
     background: #ffffff;
     border: 1px solid #cacaca;
@@ -750,6 +752,11 @@
       .selected-flag {
         background: #fff;
         border-radius: 3px 0 0 0;
+        .dialCode {
+          &::after {
+            transform: translateY(-50%) rotate(45*3deg);
+          }
+        }
       }
     }
     &:hover {
@@ -772,10 +779,13 @@
   .selected-flag {
     z-index: 13;
     position: relative;
-    width: 38px;
+    width: @dial-code-width;
     height: 26px;
-    padding: 0 0 0 8px;
+    // padding: 0 0 0 8px;
     border-radius: 3px 0 0 3px;
+    border-width: 0;
+    background-color: #fff;
+    border-right: 1px solid #cacaca;
     .flag {
       position: absolute;
       top: 50%;
@@ -796,6 +806,21 @@
       &.up {
         border-top: none;
         border-bottom: 4px solid #555;
+      }
+    }
+
+    .dialCode {
+      text-align: left;
+      &::after {
+        content: '';
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        border-top: 1px solid #cacaca;
+        border-right: 1px solid #cacaca;
+        top: 50%;
+        right: 5px;
+        transform: translateY(-50%) rotate(45deg);
       }
     }
   }
@@ -827,6 +852,8 @@
     }
     .country {
       padding: 5px 10px;
+      display: flex;
+      align-items: center;
       .dial-code {
         color: #999;
       }

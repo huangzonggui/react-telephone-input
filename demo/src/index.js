@@ -23,8 +23,8 @@ const Demo = () => (
   <div>
     <h4>
       Github repo -{' '}
-      <a href="https://github.com/mukeshsoni/react-telephone-input">
-        https://github.com/mukeshsoni/react-telephone-input
+      <a href="https://github.com/huangzonggui/react-telephone-input">
+        https://github.com/huangzonggui/react-telephone-input
       </a>
     </h4>
     <h1>React Telephone Input Demo</h1>

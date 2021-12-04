@@ -1,5 +1,5 @@
 {
-  "name": "react-telephone-input",
+  "name": "react-telephone-input-2",
   "version": "6.0.0",
   "description": "React component for entering and validating international telephone numbers",
   "main": "dist/index.js",
@@ -11,6 +11,7 @@
     "src"
   ],
   "scripts": {
+    "buildLess": "npx lessc ./less/default.less ./css/default.css",
     "build": "tsdx build --entry ./src/ReactTelephoneInput.tsx",
     "clean": "nwb clean-module && npx nwb clean-demo",
     "start": "nwb serve-react-demo",
@@ -45,7 +46,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mukeshsoni/react-telephone-input"
+    "url": "https://github.com/huangzonggui/react-telephone-input"
   },
   "keywords": [
     "react-component",
@@ -56,9 +57,9 @@
   "author": "Mukesh Soni",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mukeshsoni/react-telephone-input/issues"
+    "url": "https://github.com/huangzonggui/react-telephone-input/issues"
   },
-  "homepage": "https://github.com/mukeshsoni/react-telephone-input",
+  "homepage": "https://github.com/huangzonggui/react-telephone-input",
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
