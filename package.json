@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "buildLess": "npx lessc ./less/default.less ./css/default.css",
-    "build": "tsdx build --entry ./src/ReactTelephoneInput.tsx",
+    "build": "npx lessc ./less/default.less ./css/default.css && tsdx build --entry ./src/ReactTelephoneInput.tsx",
     "clean": "nwb clean-module && npx nwb clean-demo",
     "start": "nwb serve-react-demo",
     "lint": "eslint src",
