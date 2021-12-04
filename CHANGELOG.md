@@ -1,3 +1,18 @@
+#### 6.0.4 (2021-12-04)
+
+##### New Features
+
+*  disable style add initialDialCode props ([7422c479](https://github.com/huangzonggui/react-telephone-input/commit/7422c479798b9f5060d22908772ff36396bace17))
+
+##### Bug Fixes
+
+*  onlyCountries default select dialCode ([3c9bdfdf](https://github.com/huangzonggui/react-telephone-input/commit/3c9bdfdf8382f392b7c57ccee018a8d1552bebe2))
+
+##### Tests
+
+*  Github Actions ([db66b3b2](https://github.com/huangzonggui/react-telephone-input/commit/db66b3b23c3d22ef4c8fa9672bdb8be213af6dff))
+*  Github Actions ([6c00b2a5](https://github.com/huangzonggui/react-telephone-input/commit/6c00b2a5a0f28988182920f8cd9381a5e6ba191e))
+
 #### 6.0.2 (2021-12-04)
 
 ##### Bug Fixes
