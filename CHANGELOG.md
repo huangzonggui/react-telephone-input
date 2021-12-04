@@ -1,3 +1,9 @@
+#### 6.0.1 (2021-12-04)
+
+##### New Features
+
+*  - add Githubs Actions - change style ([a7ab6762](https://github.com/huangzonggui/react-telephone-input/commit/a7ab6762b551f65b7c659570f4f4fd76a9330153))
+
 ## 6.0.0 (2021-12-04)
 
 ##### New Features
