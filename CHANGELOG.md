@@ -1,3 +1,13 @@
+## 6.0.0 (2021-12-04)
+
+##### New Features
+
+*  修改输出电话号码 不带区号 ([2a4dd697](https://github.com/mukeshsoni/react-telephone-input/commit/2a4dd6975a987d2b5dc3cc9cd2456a44144f8e78))
+
+##### Bug Fixes
+
+*  demo site was not working ([76eb2443](https://github.com/mukeshsoni/react-telephone-input/commit/76eb2443b471791e685ddbd4eab4269feabe5009))
+
 #### 5.0.1 (2021-12-04)
 
 ##### Bug Fixes
