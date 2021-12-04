@@ -155,7 +155,7 @@ export class ReactTelephoneInput extends Component<Props, State> {
       debouncedQueryStingSearcher: debounce(this.searchCountry, 600),
       formattedNumber: '',
       highlightCountryIndex: 0,
-      dialCode: allCountries[0].dialCode
+      dialCode: this.props.onlyCountries[0].dialCode ? this.props.onlyCountries[0].dialCode : ''
     };
   }
 

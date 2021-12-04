@@ -5,8 +5,18 @@ import { render } from 'react-dom';
 // import ReactTelephoneInput from '../../src/withStyles'
 import RTI from '../../src/withStyles';
 
+import countryData from 'country-telephone-data';
+
 const flagsImagePath = require('../../images/flags.png');
 // const RTI = testGenerator(ReactTelephoneInput)
+const onlyCountries =
+  [
+    { name: "Macau (澳門)", iso2: "mo", dialCode: "853", priority: 0, format: "+..-..-....-...." },
+    { name: "United States", iso2: "us", dialCode: "1", priority: 0, format: "+. (...) ...-...." },
+    { name: "Canada", iso2: "ca", dialCode: "1", priority: 1, format: "+. (...) ...-....", hasAreaCodes: true },
+    { name: "Mexico (México)", iso2: "mx", dialCode: "52", priority: 0, format: "+..-..-..-...." },
+    { name: "Brazil (Brasil)", iso2: "br", dialCode: "55", priority: 0, format: "+..-..-....-...." },
+  ]
 
 // eslint-disable-next-line
 function CodeBlock({ children }) {
@@ -93,6 +103,32 @@ const Demo = () => (
       flagsImagePath={flagsImagePath}
       initialValue="+13559112121"
       preferredCountries={['us', 'ca', 'zz', 'hk']}
+    />
+
+    <CodeBlock>
+      {`
+    <RTI
+      defaultCountry="mo"
+      flagsImagePath={flagsImagePath}
+      onlyCountries={[
+        { name: "Macau (澳門)", iso2: "mo", dialCode: "853", priority: 0, format: "+..-..-....-...." },
+        { name: "United States", iso2: "us", dialCode: "1", priority: 0, format: "+. (...) ...-...." },
+        { name: "Canada", iso2: "ca", dialCode: "1", priority: 1, format: "+. (...) ...-....", hasAreaCodes: true },
+        { name: "Mexico (México)", iso2: "mx", dialCode: "52", priority: 0, format: "+..-..-..-...." },
+        { name: "Brazil (Brasil)", iso2: "br", dialCode: "55", priority: 0, format: "+..-..-....-...." },
+      ]}
+    />`}
+    </CodeBlock>
+    <RTI
+      defaultCountry="mo"
+      flagsImagePath={flagsImagePath}
+      onlyCountries={[
+        { name: "Macau (澳門)", iso2: "mo", dialCode: "853", priority: 0, format: "+..-..-....-...." },
+        { name: "United States", iso2: "us", dialCode: "1", priority: 0, format: "+. (...) ...-...." },
+        { name: "Canada", iso2: "ca", dialCode: "1", priority: 1, format: "+. (...) ...-....", hasAreaCodes: true },
+        { name: "Mexico (México)", iso2: "mx", dialCode: "52", priority: 0, format: "+..-..-..-...." },
+        { name: "Brazil (Brasil)", iso2: "br", dialCode: "55", priority: 0, format: "+..-..-....-...." },
+      ]}
     />
   </div>
 );
