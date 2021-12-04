@@ -1,3 +1,10 @@
+#### 6.0.2 (2021-12-04)
+
+##### Bug Fixes
+
+*  build before publish (Github Actions) ([26be3689](https://github.com/huangzonggui/react-telephone-input/commit/26be3689c477d3a4ca129476a79cd6feba270213))
+*  Githubs Actions ([d8347fb9](https://github.com/huangzonggui/react-telephone-input/commit/d8347fb9bd855a45da84c4a1369ba05afe07ac2b))
+
 #### 6.0.1 (2021-12-04)
 
 ##### New Features
