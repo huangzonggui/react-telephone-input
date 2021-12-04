@@ -49,9 +49,13 @@ export type Props = {
   classNames: string;
   className: string;
   inputId: string;
-  onChange: (inputNumber: string, selectedCountry: Country) => void;
-  onFocus?: (inputNumber: string, selectedCountry: Country) => void;
-  onBlur?: (inputNumber: string, selectedCountry: Country) => void;
+  // onChange: (inputNumber: string, selectedCountry: Country) => void;
+  // onFocus?: (inputNumber: string, selectedCountry: Country) => void;
+  // onBlur?: (inputNumber: string, selectedCountry: Country) => void;
+
+  onChange: (inputNumber: string, dialCode: string) => void;
+  onFocus?: (inputNumber: string, dialCode: string) => void;
+  onBlur?: (inputNumber: string, dialCode: string) => void;
   pattern: string;
 } & DefaultProps;
 
@@ -98,6 +102,7 @@ interface State {
   freezeSelection: boolean;
   debouncedQueryStingSearcher: () => void;
   selectedCountry?: Country;
+  dialCode: string;
   highlightCountryIndex: number;
   formattedNumber: string;
 }
@@ -109,7 +114,7 @@ export class ReactTelephoneInput extends Component<Props, State> {
     defaultCountry: allCountries[0].iso2,
     isValid: isNumberValid,
     flagsImagePath: 'flags.png',
-    onEnterKeyPress() {},
+    onEnterKeyPress() { },
     preferredCountries: [],
     disabled: false,
     placeholder: '+1 (702) 123-4567',
@@ -149,6 +154,7 @@ export class ReactTelephoneInput extends Component<Props, State> {
       debouncedQueryStingSearcher: debounce(this.searchCountry, 600),
       formattedNumber: '',
       highlightCountryIndex: 0,
+      dialCode: ''
     };
   }
 
@@ -207,13 +213,14 @@ export class ReactTelephoneInput extends Component<Props, State> {
       preferredCountries.concat(onlyCountries),
     );
 
-    const formattedNumber = formatNumber(
-      inputNumber.replace(/\D/g, ''),
-      selectedCountryGuess && selectedCountryGuess.format
-        ? selectedCountryGuess.format
-        : null,
-      props.autoFormat,
-    );
+    const formattedNumber = inputNumber.replace(/\D/g, '');
+    // const formattedNumber = formatNumber(
+    //   inputNumber.replace(/\D/g, ''),
+    //   selectedCountryGuess && selectedCountryGuess.format
+    //     ? selectedCountryGuess.format
+    //     : null,
+    //   props.autoFormat,
+    // );
 
     return {
       firstCall: false,
@@ -247,11 +254,12 @@ export class ReactTelephoneInput extends Component<Props, State> {
 
     e.preventDefault();
     const { preferredCountries } = this.state;
-    const selectedCountry = this.state.selectedCountry!;
+    // const selectedCountry = this.state.selectedCountry!;
     const { onlyCountries } = this.props;
 
     const highlightCountryIndex = findIndex(
-      propEq('iso2', selectedCountry.iso2),
+      // propEq('iso2', selectedCountry.iso2),
+      propEq('dialCode', this.state.dialCode),
       preferredCountries.concat(onlyCountries),
     );
 
@@ -263,8 +271,9 @@ export class ReactTelephoneInput extends Component<Props, State> {
   };
 
   handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-    let formattedNumber = '+';
-    let newSelectedCountry = this.state.selectedCountry!;
+    // let formattedNumber = '+';
+    let formattedNumber = '';
+    // let newSelectedCountry = this.state.selectedCountry!;
     let { freezeSelection } = this.state;
 
     // if the input is the same as before, must be some special key like enter, alt, command etc.
@@ -288,37 +297,39 @@ export class ReactTelephoneInput extends Component<Props, State> {
       // the guess country function can then use memoization much more effectively
       // since the set of input it gets has drastically reduced
       if (
-        !this.state.freezeSelection ||
-        newSelectedCountry.dialCode.length > inputNumber.length
+        !this.state.freezeSelection
+        // ||
+        // newSelectedCountry.dialCode.length > inputNumber.length
       ) {
-        newSelectedCountry = guessSelectedCountry(
-          inputNumber.substring(0, 6),
-          this.props,
-        );
+        // newSelectedCountry = guessSelectedCountry(
+        //   inputNumber.substring(0, 6),
+        //   this.props,
+        // );
         freezeSelection = false;
       }
-      formattedNumber = formatNumber(
-        inputNumber,
-        newSelectedCountry && newSelectedCountry.format
-          ? newSelectedCountry.format
-          : null,
-        this.props.autoFormat,
-      );
+      formattedNumber = inputNumber
+      // formatNumber(
+      // inputNumber,
+      // newSelectedCountry && newSelectedCountry.format
+      //   ? newSelectedCountry.format
+      //   : null,
+      //   this.props.autoFormat,
+      // );
     }
 
     let caretPosition: number = event.target.selectionStart || 0;
     const oldFormattedText = this.state.formattedNumber;
     const diff = formattedNumber.length - oldFormattedText.length;
-    const selectedCountry =
-      newSelectedCountry.dialCode.length > 0
-        ? newSelectedCountry
-        : this.state.selectedCountry!;
+    // const selectedCountry =
+    //   newSelectedCountry.dialCode.length > 0
+    //     ? newSelectedCountry
+    //     : this.state.selectedCountry!;
 
     this.setState(
       {
         formattedNumber,
         freezeSelection,
-        selectedCountry,
+        // selectedCountry,
       },
       () => {
         if (isModernBrowser) {
@@ -344,7 +355,8 @@ export class ReactTelephoneInput extends Component<Props, State> {
         }
 
         if (this.props.onChange) {
-          this.props.onChange(formattedNumber, selectedCountry);
+          // this.props.onChange(formattedNumber, this.state.selectedCountry!);
+          this.props.onChange(formattedNumber, this.state.dialCode!);
         }
       },
     );
@@ -367,29 +379,34 @@ export class ReactTelephoneInput extends Component<Props, State> {
       nextSelectedCountry &&
       currentSelectedCountry.iso2 !== nextSelectedCountry.iso2
     ) {
-      const newNumber = replaceCountryCode(
-        currentSelectedCountry,
-        nextSelectedCountry,
-        this.state.formattedNumber.replace(/\D/g, ''), // let's convert formatted number to just numbers for easy find/replace
-      );
+      // const newNumber = replaceCountryCode(
+      //   currentSelectedCountry,
+      //   nextSelectedCountry,
+      //   this.state.formattedNumber.replace(/\D/g, ''), // let's convert formatted number to just numbers for easy find/replace
+      // );
 
-      const formattedNumber = formatNumber(
-        newNumber,
-        nextSelectedCountry.format,
-        this.props.autoFormat,
-      );
+      // const formattedNumber = formatNumber(
+      //   newNumber,
+      //   nextSelectedCountry.format,
+      //   this.props.autoFormat,
+      // );
 
       this.setState(
         {
           showDropDown: false,
-          selectedCountry: nextSelectedCountry,
+          selectedCountry: nextSelectedCountry,// not work
           freezeSelection: true,
-          formattedNumber,
+          // formattedNumber: this.state.formattedNumber,
+          dialCode: nextSelectedCountry.dialCode
         },
         () => {
           this._cursorToEnd();
+          // setTimeout(() => {
+          //   console.log('this.state :>> ', this.state);
+          // }, 3000)
           if (this.props.onChange) {
-            this.props.onChange(formattedNumber, nextSelectedCountry);
+            // this.props.onChange(this.state.formattedNumber, nextSelectedCountry);
+            this.props.onChange(this.state.formattedNumber, nextSelectedCountry.dialCode);
           }
         },
       );
@@ -403,7 +420,8 @@ export class ReactTelephoneInput extends Component<Props, State> {
     if (typeof this.props.onFocus === 'function') {
       this.props.onFocus(
         this.state.formattedNumber,
-        this.state.selectedCountry!,
+        // this.state.selectedCountry!,
+        this.state.dialCode!,
       );
     }
 
@@ -416,7 +434,7 @@ export class ReactTelephoneInput extends Component<Props, State> {
     // if the input is blank, insert dial code of the selected country
     if (this.numberInputRef && this.numberInputRef.value === '+') {
       this.setState({
-        formattedNumber: `+${selectedCountry.dialCode}`,
+        // formattedNumber: `+${selectedCountry.dialCode}`,
       });
     }
   };
@@ -431,7 +449,7 @@ export class ReactTelephoneInput extends Component<Props, State> {
     if (
       newHighlightCountryIndex < 0 ||
       newHighlightCountryIndex >=
-        onlyCountries.length + preferredCountries.length
+      onlyCountries.length + preferredCountries.length
     ) {
       return newHighlightCountryIndex - direction;
     }
@@ -504,7 +522,7 @@ export class ReactTelephoneInput extends Component<Props, State> {
       case keys.ENTER:
         this.handleFlagItemClick(
           this.state.preferredCountries.concat(onlyCountries)[
-            this.state.highlightCountryIndex
+          this.state.highlightCountryIndex
           ],
         );
         break;
@@ -617,10 +635,10 @@ export class ReactTelephoneInput extends Component<Props, State> {
   };
 
   handleInputBlur = () => {
-    const selectedCountry = this.state.selectedCountry!;
+    // const selectedCountry = this.state.selectedCountry!;
 
     if (typeof this.props.onBlur === 'function') {
-      this.props.onBlur(this.state.formattedNumber, selectedCountry);
+      this.props.onBlur(this.state.formattedNumber, this.state.dialCode);
     }
   };
 
@@ -650,7 +668,8 @@ export class ReactTelephoneInput extends Component<Props, State> {
       'open-dropdown': this.state.showDropDown,
     });
 
-    const inputFlagClasses = `flag ${selectedCountry.iso2}`;
+    // const inputFlagClasses = `flag ${selectedCountry.iso2}`;
+    const inputFlagClasses = `flag`;
     const { buttonProps } = this.props;
     const otherProps = this.props.inputProps;
     if (otherProps && this.props.inputId) {
@@ -674,7 +693,7 @@ export class ReactTelephoneInput extends Component<Props, State> {
           <button
             onClick={this.handleFlagDropdownClick}
             className="selected-flag"
-            title={`${selectedCountry.name}: + ${selectedCountry.dialCode}`}
+            // title={`${selectedCountry.name}: + ${selectedCountry.dialCode}`}
             data-test-id="src_reacttelephoneinput_test_id_7"
             onKeyDown={this.handleFlagKeyDown}
             type={'button' as any}
@@ -682,9 +701,11 @@ export class ReactTelephoneInput extends Component<Props, State> {
           >
             <div
               className={inputFlagClasses}
-              style={this.getFlagStyle()}
+              // style={this.getFlagStyle()}
               data-test-id="src_reacttelephoneinput_test_id_8"
             >
+              {/* <span>{`+${this.state.selectedCountry?.dialCod}`}</span> 無法更新視圖，對象是引用類型*/}
+              <span>{`+${this.state.dialCode}`}</span>
               <div
                 className={arrowClasses}
                 data-test-id="src_reacttelephoneinput_test_id_9"

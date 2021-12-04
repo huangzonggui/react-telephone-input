@@ -30,7 +30,7 @@ const Demo = () => (
     <h1>React Telephone Input Demo</h1>
     <h3>Base case</h3>
     <CodeBlock>{'<RTI flagsImagePath={flagsImagePath} />'}</CodeBlock>
-    <RTI flagsImagePath={flagsImagePath} />
+    <RTI flagsImagePath={flagsImagePath} onChange={(telnumber, country) => console.log('telnumber :>> ', telnumber, 'country: ', country)} />
     <br />
     <h3>With initial values and auto focus</h3>
     <CodeBlock>
