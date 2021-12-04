@@ -1,3 +1,9 @@
+#### 5.0.1 (2021-12-04)
+
+##### Bug Fixes
+
+*  demo site was not working ([76eb2443](https://github.com/mukeshsoni/react-telephone-input/commit/76eb2443b471791e685ddbd4eab4269feabe5009))
+
 ## 5.0.0 (2020-05-02)
 
 # Changelog
