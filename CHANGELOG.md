@@ -1,3 +1,9 @@
+#### 6.0.6 (2021-12-06)
+
+##### Code Style Changes
+
+*  去除多餘的1px ([ccbee0f5](https://github.com/huangzonggui/react-telephone-input/commit/ccbee0f5159c2f9dec51d235e8ec98536a6d324c))
+
 #### 6.0.5 (2021-12-06)
 
 ##### Code Style Changes
