@@ -39,6 +39,29 @@ const Demo = () => (
     </h4>
     <h1>React Telephone Input Demo</h1>
     <h3>Base case</h3>
+
+    <CodeBlock>
+      {`one`}
+    </CodeBlock>
+    <RTI
+      flagsImagePath={flagsImagePath}
+      // disabled={true}
+      initialValue={'1999'}
+      initialDialCode={'53'}
+      onlyCountries={[
+        { name: "Macau (澳門)", iso2: "mo", dialCode: "853", priority: 0, format: "+..-..-....-...." },
+        { name: "United States", iso2: "us", dialCode: "1", priority: 0, format: "+. (...) ...-...." },
+        { name: "Canada", iso2: "ca", dialCode: "1", priority: 1, format: "+. (...) ...-....", hasAreaCodes: true },
+        { name: "Mexico (México)", iso2: "mx", dialCode: "52", priority: 0, format: "+..-..-..-...." },
+        { name: "Brazil (Brasil)", iso2: "br", dialCode: "55", priority: 0, format: "+..-..-....-...." },
+      ]}
+      onChange={(telnumber, country) =>
+        console.log('telnumber :>> ', telnumber, 'country: ', country)}
+      reactTelInputStyle={{ width: '100%' }}
+      inputHeight={50}
+      dialCodeWidth={80}
+    />
+
     <CodeBlock>{'<RTI flagsImagePath={flagsImagePath} />'}</CodeBlock>
     <RTI flagsImagePath={flagsImagePath} onChange={(telnumber, country) => console.log('telnumber :>> ', telnumber, 'country: ', country)} />
     <br />
@@ -130,38 +153,6 @@ const Demo = () => (
       ]}
     />
 
-    <CodeBlock>
-      {` <RTI
-    flagsImagePath={flagsImagePath}
-    disabled={true}
-    initialValue={'1999'}
-    initialDialCode={'53'}
-    onlyCountries={[
-      { name: "Macau (澳門)", iso2: "mo", dialCode: "853", priority: 0, format: "+..-..-....-...." },
-      { name: "United States", iso2: "us", dialCode: "1", priority: 0, format: "+. (...) ...-...." },
-      { name: "Canada", iso2: "ca", dialCode: "1", priority: 1, format: "+. (...) ...-....", hasAreaCodes: true },
-      { name: "Mexico (México)", iso2: "mx", dialCode: "52", priority: 0, format: "+..-..-..-...." },
-      { name: "Brazil (Brasil)", iso2: "br", dialCode: "55", priority: 0, format: "+..-..-....-...." },
-    ]}
-    onChange={(telnumber, country) =>
-      console.log('telnumber :>> ', telnumber, 'country: ', country)}
-    />`}
-    </CodeBlock>
-    <RTI
-      flagsImagePath={flagsImagePath}
-      disabled={true}
-      initialValue={'1999'}
-      initialDialCode={'53'}
-      onlyCountries={[
-        { name: "Macau (澳門)", iso2: "mo", dialCode: "853", priority: 0, format: "+..-..-....-...." },
-        { name: "United States", iso2: "us", dialCode: "1", priority: 0, format: "+. (...) ...-...." },
-        { name: "Canada", iso2: "ca", dialCode: "1", priority: 1, format: "+. (...) ...-....", hasAreaCodes: true },
-        { name: "Mexico (México)", iso2: "mx", dialCode: "52", priority: 0, format: "+..-..-..-...." },
-        { name: "Brazil (Brasil)", iso2: "br", dialCode: "55", priority: 0, format: "+..-..-....-...." },
-      ]}
-      onChange={(telnumber, country) =>
-        console.log('telnumber :>> ', telnumber, 'country: ', country)}
-    />
   </div>
 );
 

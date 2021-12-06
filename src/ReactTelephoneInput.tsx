@@ -41,6 +41,10 @@ interface DefaultProps {
   buttonProps: React.HTMLProps<HTMLButtonElement>;
   listItemClassName: string;
   listStyle: React.CSSProperties;
+  reactTelInputStyle: React.CSSProperties;
+  inputHeight?: number;
+  selectedFlag?: number;
+  dialCodeWidth?: number;
 }
 
 export type Props = {
@@ -590,6 +594,7 @@ export class ReactTelephoneInput extends Component<Props, State> {
 
     const { highlightCountryIndex, preferredCountries } = this.state;
     const data = preferredCountries.concat(onlyCountries);
+    const countryListStyle = this.props.inputHeight ? { top: this.props.inputHeight - 2 } : {}
 
     return (
       <VirtualList
@@ -597,7 +602,7 @@ export class ReactTelephoneInput extends Component<Props, State> {
         height={300}
         itemCount={data.length}
         itemSize={40}
-        style={this.props.listStyle}
+        style={{ ...this.props.listStyle, ...countryListStyle }}
         className="country-list"
         scrollToIndex={highlightCountryIndex}
         scrollToAlignment={'center' as any}
@@ -699,6 +704,11 @@ export class ReactTelephoneInput extends Component<Props, State> {
       otherProps.id = this.props.inputId;
     }
 
+    const inputHeightStyle = this.props.inputHeight ? { height: this.props.inputHeight } : {}
+    const inputPaddingLeftStyle = this.props.dialCodeWidth ? { paddingLeft: this.props.dialCodeWidth + 4 } : {}
+    const btnHeightStyle = this.props.inputHeight ? { height: this.props.inputHeight - 2 } : {}
+    const dialCodeStyle = this.props.dialCodeWidth ? { width: this.props.dialCodeWidth } : {}
+
     return (
       <div
         className={classNames(
@@ -708,6 +718,7 @@ export class ReactTelephoneInput extends Component<Props, State> {
           this.props.disabled && 'react-tel-input-disabled'
         )}
         data-test-id="src_reacttelephoneinput_test_id_4"
+        style={this.props.reactTelInputStyle}
       >
         <div
           className={flagViewClasses}
@@ -722,6 +733,7 @@ export class ReactTelephoneInput extends Component<Props, State> {
             onKeyDown={this.handleFlagKeyDown}
             type={'button' as any}
             {...buttonProps}
+            style={{ ...btnHeightStyle, ...dialCodeStyle }}
           >
             {/* <div
               className={inputFlagClasses}
@@ -759,6 +771,7 @@ export class ReactTelephoneInput extends Component<Props, State> {
           {...otherProps}
           data-test-id="src_reacttelephoneinput_test_id_5"
           id="ReactTelephoneInputId"
+          style={{ ...inputHeightStyle, ...inputPaddingLeftStyle }}
         />
       </div>
     );
