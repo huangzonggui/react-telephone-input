@@ -1,3 +1,9 @@
+#### 6.0.5 (2021-12-06)
+
+##### Code Style Changes
+
+*  樣式 ([38449fad](https://github.com/huangzonggui/react-telephone-input/commit/38449fad1c83c3a74850e98a29ba6cd6f357515b))
+
 #### 6.0.4 (2021-12-04)
 
 ##### New Features
