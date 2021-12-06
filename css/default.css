@@ -124,6 +124,7 @@
 }
 .react-tel-input .selected-flag .dialCode {
   text-align: left;
+  color: #000;
 }
 .react-tel-input .selected-flag .dialCode::after {
   content: '';
