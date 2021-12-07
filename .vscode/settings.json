@@ -3,5 +3,6 @@
   "flow.useNPMPackagedFlow": true,
   "typescript.validate.enable": false,
   "prettier.printWidth": 100,
-  "prettier.singleQuote": true
+  "prettier.singleQuote": true,
+  "workbench.colorTheme": "Default Light+"
 }
