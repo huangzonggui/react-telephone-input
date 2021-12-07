@@ -45,6 +45,7 @@ interface DefaultProps {
   inputHeight?: number;
   selectedFlag?: number;
   dialCodeWidth?: number;
+  inputFormControlStyle?: React.CSSProperties;
 }
 
 export type Props = {
@@ -771,7 +772,7 @@ export class ReactTelephoneInput extends Component<Props, State> {
           {...otherProps}
           data-test-id="src_reacttelephoneinput_test_id_5"
           id="ReactTelephoneInputId"
-          style={{ ...inputHeightStyle, ...inputPaddingLeftStyle }}
+          style={{ ...this.props.inputFormControlStyle, ...inputHeightStyle, ...inputPaddingLeftStyle }}
         />
       </div>
     );
