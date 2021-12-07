@@ -1,3 +1,13 @@
+#### 6.0.7 (2021-12-07)
+
+##### Other Changes
+
+*  inputFormControlStyle ([42710115](https://github.com/huangzonggui/react-telephone-input/commit/42710115f66731ec77fce9eefba22cddb95ac66b))
+
+##### Code Style Changes
+
+*  区号字体 ([23ef49d6](https://github.com/huangzonggui/react-telephone-input/commit/23ef49d6d810f741d2b101a28aecba7eb85769de))
+
 #### 6.0.6 (2021-12-06)
 
 ##### Code Style Changes
