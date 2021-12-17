@@ -4,6 +4,16 @@
 
 *  用state 控制inputNumber時，出現無法刪除最後一個字母 ([75e49bb2](https://github.com/huangzonggui/react-telephone-input/commit/75e49bb2e2f23c4a208f307f9bd9e328ee77f6c2))
 
+##### Refactors
+
+*  delete some comment ([660ff831](https://github.com/huangzonggui/react-telephone-input/commit/660ff831bb2cd66f10fbcc5211fc3c40f8cfa1f6))
+
+#### 6.0.8 (2021-12-17)
+
+##### Bug Fixes
+
+*  用state 控制inputNumber時，出現無法刪除最後一個字母 ([75e49bb2](https://github.com/huangzonggui/react-telephone-input/commit/75e49bb2e2f23c4a208f307f9bd9e328ee77f6c2))
+
 #### 6.0.7 (2021-12-07)
 
 ##### Other Changes
