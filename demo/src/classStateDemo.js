@@ -56,8 +56,7 @@ export default class classStateDemo extends React.Component {
         ]}
         initialValue={this.state.mobileNumber}// 初始化电话
         initialDialCode={this.state.dialCode}
-        // 看源碼 firstCall， 第一次渲染才會顯示，如果 this.props.mobileNumber 是通過 setState 異步設置值，就無法渲染
-        value={this.state.mobileNumber}// 加了：刪除都最後一個無法刪除 不加：修改預約時，沒有初始值
+        value={this.state.mobileNumber}
         reactTelInputStyle={{
           width: '100%',
           fontSize: 20
