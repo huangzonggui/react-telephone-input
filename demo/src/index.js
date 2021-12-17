@@ -4,6 +4,7 @@ import { render } from 'react-dom';
 
 // import ReactTelephoneInput from '../../src/withStyles'
 import RTI from '../../src/withStyles';
+import ClassStateDemo from './classStateDemo'
 
 import countryData from 'country-telephone-data';
 
@@ -11,7 +12,7 @@ const flagsImagePath = require('../../images/flags.png');
 // const RTI = testGenerator(ReactTelephoneInput)
 
 // eslint-disable-next-line
-function CodeBlock({ children }) {
+export function CodeBlock({ children }) {
   return (
     <div style={{ marginBottom: 10 }}>
       <pre>
@@ -30,6 +31,9 @@ const Demo = () => (
       </a>
     </h4>
     <h1>React Telephone Input Demo</h1>
+   
+    <ClassStateDemo />
+
     <h3>Base case</h3>
 
     <CodeBlock>

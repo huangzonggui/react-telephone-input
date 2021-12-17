@@ -195,11 +195,18 @@ export class ReactTelephoneInput extends Component<Props, State> {
       return state;
     }
 
+
+    console.log('props.value :>> ', props.value);
+    console.log('props.initalValue :>> ', props.initialValue);
+    console.log('state.firstCall :>> ', state.firstCall);
     if (props.value) {
+      console.log('111111');
       inputNumber = props.value;
     } else if (props.initialValue && state.firstCall) {
+      console.log('222222');
       inputNumber = props.initialValue;
-    } else if (props.value === null) {
+    } else if (props.value === null || props.value === '') {
+      console.log('333333');
       // just clear the value
       inputNumber = '';
     } else if (
@@ -207,8 +214,10 @@ export class ReactTelephoneInput extends Component<Props, State> {
       state.formattedNumber &&
       state.formattedNumber.length > 0
     ) {
+      console.log('555555');
       inputNumber = state.formattedNumber;
     } else {
+      console.log('666666');
       inputNumber = '';
     }
 
